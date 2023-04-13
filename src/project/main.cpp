@@ -33,5 +33,6 @@ int main()
             TryAgainMsg();
         }
     }
+    return 0;
 }
 
