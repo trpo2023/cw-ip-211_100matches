@@ -21,13 +21,10 @@ int main()
         MenuMessage(menuflag);
         switch (menuflag) {
         case '1':
-            //
             break;
         case '2':
-            //
             break;
         case '3':
-            //
             break;
         case '4':
             return 0;
@@ -36,6 +33,5 @@ int main()
             TryAgainMsg();
         }
     }
-    //
 }
 
