@@ -1,4 +1,6 @@
+#include <LibOfProject/rules.h>
 #include <iostream>
+#include <stdlib.h>
 
 void MenuMessage(unsigned char& menuflag)
 {
@@ -19,10 +21,12 @@ int main()
     unsigned char menuflag;
     while (1) {
         MenuMessage(menuflag);
+        system("clear");
         switch (menuflag) {
         case '1':
             break;
         case '2':
+            Rules();
             break;
         case '3':
             break;
@@ -33,5 +37,4 @@ int main()
             TryAgainMsg();
         }
     }
-    return 0;
 }
