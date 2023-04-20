@@ -1,5 +1,6 @@
-#include <LibOfProject/rules.h>
-#include <LibOfProject/settings.h>
+#include <rules.h>
+#include <settings.h>
+#include <iostream>
 #include <stdlib.h>
 
 void MenuMessage(unsigned char& menuflag)
