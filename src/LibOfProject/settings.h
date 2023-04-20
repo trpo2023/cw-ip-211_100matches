@@ -1,7 +1,5 @@
 #pragma once
 #include <vector>
-#include <Windows.h>
-#include <conio.h>
 #include <iostream>
 
 //Реализовать пункт меню, в отдельном файле в этой функции(settings)

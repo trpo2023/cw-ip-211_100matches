@@ -1,4 +1,4 @@
-﻿#include <settings.h>
+﻿#include <LibOfProject/settings.h>
 
 using std::cout;
 using std::string;
@@ -7,6 +7,7 @@ void settings(std::vector<int>& defaultSettings)
 {
     bool isSettings = true;
     char userInput;
+    //char delay;
 
     while (isSettings) {
         cout << "Вы находитесь в разделе 'НАСТРОЙКИ'\n" + string(20, '*')
@@ -16,22 +17,22 @@ void settings(std::vector<int>& defaultSettings)
              << "2 - максимально допустимое кол-во спичек взятых за раз\n3 - "
                 "вернуть начальные настройки\n4 - выйти в меню\n";
 
-        userInput = _getch();
+        userInput = getchar();
         unsigned int userSettingsInput = 0;
 
         switch (userInput) {
         case '1': // меняем первый параметр
-            system("CLS");
+            system("clear");
             cout << "Текущее значение параметра: " << defaultSettings[0]
                  << "\nВы можете изменить его в пределах от [50-200], "
                  << "для этого нажмите 'y'.\nЧтобы снова перейти в раздел "
                     "'НАСТРОЙКИ' нажмите любую другую кнопку\n";
 
             char changeSettingsOne;
-            changeSettingsOne = _getch();
+            std::cin >> changeSettingsOne;
             switch (changeSettingsOne) {
             case 'y':
-                system("CLS");
+                system("clear");
                 cout << "Введите число от 50 до 200 ->\n";
                 std::cin >> userSettingsInput;
                 if (userSettingsInput <= 200 && userSettingsInput >= 50) {
@@ -42,27 +43,27 @@ void settings(std::vector<int>& defaultSettings)
                             "\nДля продолжения нажмите любую кнопку...";
                 } else
                     cout << "Введен неправильный диапазон!\n";
-                _getch();
+                //delay = getchar();
                 break;
 
             default:
-                system("CLS");
+                system("clear");
                 break;
             }
             break;
 
         case '2': // меняем второй параметр
-            system("CLS");
+            system("clear");
             cout << "Текущее значение параметра: " << defaultSettings[1]
                  << "\nВы можете изменить его в пределах от [5-20],"
                  << "для этого нажмите 'y'.\nчтобы снова перейти в раздел "
                     "'НАСТРОЙКИ' нажмите любую другую кнопку\n";
 
             char changeSettingsTwo;
-            changeSettingsTwo = _getch();
+            std::cin >> changeSettingsTwo;
             switch (changeSettingsTwo) {
             case 'y':
-                system("cls");
+                system("clear");
                 cout << "Введите число от 5 до 20 ->\n";
                 std::cin >> userSettingsInput;
                 if (userSettingsInput <= 20 && userSettingsInput >= 5) {
@@ -72,21 +73,21 @@ void settings(std::vector<int>& defaultSettings)
                          << "\nДля продолжения нажмите любую кнопку...";
                 } else
                     cout << "Введен неверный диапазон!\n";
-                _getch();
+                //delay = getchar();
                 break;
 
             default:
-                system("cls");
+                system("clear");
                 break;
             }
             break;
 
         case '3': // восстановить дефолтные значения
-            system("cls");
+            system("clear");
             defaultSettings[0] = 100;
             defaultSettings[1] = 10;
             cout << "Все настройки были обнулены.\n";
-            _getch();
+            //delay = getchar();
             break;
 
         case '4':
@@ -94,6 +95,6 @@ void settings(std::vector<int>& defaultSettings)
         default:
             break;
         }
-        system("CLS");
+        system("clear");
     }
 }

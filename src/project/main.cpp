@@ -19,7 +19,7 @@ void TryAgainMsg()
 int main()
 {
     unsigned char menuflag;
-    std::vector<int> settingsVec(2);
+    std::vector<int> settingsVec = {100,10};// значения настроек по умолчанию
     while (1) {
         MenuMessage(menuflag);
         system("clear");
