@@ -1,6 +1,6 @@
+#include <iostream>
 #include <rules.h>
 #include <settings.h>
-#include <iostream>
 #include <stdlib.h>
 
 void MenuMessage(unsigned char& menuflag)
@@ -20,7 +20,7 @@ void TryAgainMsg()
 int main()
 {
     unsigned char menuflag;
-    std::vector<int> settingsVec = {100,10};// значения настроек по умолчанию
+    std::vector<int> settingsVec = {100, 10}; // значения настроек по умолчанию
     while (1) {
         MenuMessage(menuflag);
         system("clear");
@@ -31,7 +31,7 @@ int main()
             Rules();
             break;
         case '3':
-	    settings(settingsVec);
+            settings(settingsVec);
             break;
         case '4':
             return 0;
