@@ -1,5 +1,4 @@
 ﻿#include <settings.h>
-
 using std::cout;
 using std::string;
 
@@ -7,8 +6,6 @@ void settings(std::vector<int>& defaultSettings)
 {
     bool isSettings = true;
     char userInput;
-    // char delay;
-
     while (isSettings) {
         cout << "Вы находитесь в разделе 'НАСТРОЙКИ'\n" + string(20, '*')
                         + "\nВыберите,"
@@ -16,18 +13,15 @@ void settings(std::vector<int>& defaultSettings)
                 "спичек\n"
              << "2 - максимально допустимое кол-во спичек взятых за раз\n3 - "
                 "вернуть начальные настройки\n4 - выйти в меню\n";
-
         userInput = getchar();
         unsigned int userSettingsInput = 0;
-
         switch (userInput) {
-        case '1': // меняем первый параметр
+        case '1':
             system("clear");
             cout << "Текущее значение параметра: " << defaultSettings[0]
                  << "\nВы можете изменить его в пределах от [50-200], "
                  << "для этого нажмите 'y'.\nЧтобы снова перейти в раздел "
                     "'НАСТРОЙКИ' нажмите любую другую кнопку\n";
-
             char changeSettingsOne;
             std::cin >> changeSettingsOne;
             switch (changeSettingsOne) {
@@ -45,20 +39,17 @@ void settings(std::vector<int>& defaultSettings)
                     cout << "Введен неправильный диапазон!\n";
                 // delay = getchar();
                 break;
-
             default:
                 system("clear");
                 break;
             }
             break;
-
         case '2': // меняем второй параметр
             system("clear");
             cout << "Текущее значение параметра: " << defaultSettings[1]
                  << "\nВы можете изменить его в пределах от [5-20],"
                  << "для этого нажмите 'y'.\nчтобы снова перейти в раздел "
                     "'НАСТРОЙКИ' нажмите любую другую кнопку\n";
-
             char changeSettingsTwo;
             std::cin >> changeSettingsTwo;
             switch (changeSettingsTwo) {
@@ -75,13 +66,11 @@ void settings(std::vector<int>& defaultSettings)
                     cout << "Введен неверный диапазон!\n";
                 // delay = getchar();
                 break;
-
             default:
                 system("clear");
                 break;
             }
             break;
-
         case '3': // восстановить дефолтные значения
             system("clear");
             defaultSettings[0] = 100;
@@ -89,7 +78,6 @@ void settings(std::vector<int>& defaultSettings)
             cout << "Все настройки были обнулены.\n";
             // delay = getchar();
             break;
-
         case '4':
             return; // выход в меню
         default:
