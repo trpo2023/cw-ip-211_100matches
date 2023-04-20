@@ -1,4 +1,4 @@
-﻿#include <LibOfProject/settings.h>
+﻿#include <settings.h>
 
 using std::cout;
 using std::string;
@@ -7,7 +7,7 @@ void settings(std::vector<int>& defaultSettings)
 {
     bool isSettings = true;
     char userInput;
-    //char delay;
+    // char delay;
 
     while (isSettings) {
         cout << "Вы находитесь в разделе 'НАСТРОЙКИ'\n" + string(20, '*')
@@ -43,7 +43,7 @@ void settings(std::vector<int>& defaultSettings)
                             "\nДля продолжения нажмите любую кнопку...";
                 } else
                     cout << "Введен неправильный диапазон!\n";
-                //delay = getchar();
+                // delay = getchar();
                 break;
 
             default:
@@ -73,7 +73,7 @@ void settings(std::vector<int>& defaultSettings)
                          << "\nДля продолжения нажмите любую кнопку...";
                 } else
                     cout << "Введен неверный диапазон!\n";
-                //delay = getchar();
+                // delay = getchar();
                 break;
 
             default:
@@ -87,7 +87,7 @@ void settings(std::vector<int>& defaultSettings)
             defaultSettings[0] = 100;
             defaultSettings[1] = 10;
             cout << "Все настройки были обнулены.\n";
-            //delay = getchar();
+            // delay = getchar();
             break;
 
         case '4':
