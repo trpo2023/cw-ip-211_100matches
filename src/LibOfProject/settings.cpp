@@ -1,4 +1,4 @@
-﻿#include "settings.h"
+﻿#include <settings.h>
 
 using std::cout;
 using std::string;
@@ -14,7 +14,7 @@ void settings(std::vector<int>& defaultSettings)
              << "что хотите изменить : \n1 - максимальное кол - во игровых "
                 "спичек\n"
              << "2 - максимально допустимое кол-во спичек взятых за раз\n3 - "
-                "выйти в меню";
+                "вернуть начальные настройки\n4 - выйти в меню\n";
 
         userInput = _getch();
         unsigned int userSettingsInput = 0;
@@ -68,7 +68,7 @@ void settings(std::vector<int>& defaultSettings)
                 if (userSettingsInput <= 20 && userSettingsInput >= 5) {
                     defaultSettings[1] = userSettingsInput;
                     cout << "значение успешно изменено на: "
-                         << defaultSettings[1] << "\n"
+                         << defaultSettings[1]
                          << "\nДля продолжения нажмите любую кнопку...";
                 } else
                     cout << "Введен неверный диапазон!\n";
@@ -81,9 +81,16 @@ void settings(std::vector<int>& defaultSettings)
             }
             break;
 
-        case '3':
-            return; // выход в меню
+        case '3': // восстановить дефолтные значения
+            system("cls");
+            defaultSettings[0] = 100;
+            defaultSettings[1] = 10;
+            cout << "Все настройки были обнулены.\n";
+            _getch();
+            break;
 
+        case '4':
+            return; // выход в меню
         default:
             break;
         }
