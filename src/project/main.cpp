@@ -1,8 +1,8 @@
 #include <iostream>
+#include <play.h>
 #include <rules.h>
 #include <settings.h>
 #include <stdlib.h>
-
 void MenuMessage(unsigned char& menuflag)
 {
     std ::cout << "Для того, чтобы играть, введите 1\n"
@@ -11,12 +11,10 @@ void MenuMessage(unsigned char& menuflag)
                   "Для того, чтобы выключить приложение, введите 4\n";
     std ::cin >> menuflag;
 }
-
 void TryAgainMsg()
 {
     std ::cout << "Введено ошибочное значение, попробуйте снова\n";
 }
-
 int main()
 {
     unsigned char menuflag;
@@ -26,6 +24,7 @@ int main()
         system("clear");
         switch (menuflag) {
         case '1':
+            play(settingsVec);
             break;
         case '2':
             Rules();
