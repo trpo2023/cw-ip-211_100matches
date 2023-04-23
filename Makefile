@@ -1,7 +1,7 @@
 APP_NAME = project
 LIB_NAME = LibOfProject
 
-source_dirs = src/LibOfProject
+source_dirs = src/LibOfProject test_src/test_lib
 
 CFLAGS = -Wall -Wextra -Werror
 CPPFLAGS = $(addprefix -I,$(source_dirs)) -MMD
@@ -23,7 +23,7 @@ LIB_SOURCES = $(shell find $(SRC_DIR)/$(LIB_NAME) -name '*.$(SRC_EXT)')
 LIB_OBJECTS = $(LIB_SOURCES:$(SRC_DIR)/%.$(SRC_EXT)=$(OBJ_DIR)/$(SRC_DIR)/%.o)
 
 
-.PHONY: all
+.PHONY: all clean test
 all: $(APP_PATH)
 
 -include $(wildcard *.d) 
@@ -37,8 +37,26 @@ $(LIB_PATH): $(LIB_OBJECTS)
 $(OBJ_DIR)/%.o: %.cpp
 	$(CC) -c $(CFLAGS) $(CPPFLAGS) $< -o $@
 
-.PHONY: clean
+
 clean:
 	$(RM) $(APP_PATH) $(LIB_PATH)
 	find $(OBJ_DIR) -name '*.o' -exec $(RM) '{}' \;
 	find $(OBJ_DIR) -name '*.d' -exec $(RM) '{}' \;
+	$(RM) $(test_exe)
+	
+
+Test_Name = test_project
+Test_Path = obj/test_src
+test_exe = bin/$(Test_Name)
+Test_src = test_src
+Test_lib = test_lib
+test:$(test_exe)
+
+$(test_exe):$(Test_Path)/$(Test_Name)/main.o $(Test_Path)/$(Test_lib)/test.o $(LIB_PATH)
+	$(CC) $(CFLAGS) $(CPPFLAGS) $^ -o $@
+	
+$(Test_Path)/$(Test_lib)/%.o: $(Test_Path)/$(Test_lib)/%.cpp
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) $< -o $@
+
+$(Test_Path)/$(Test_Name)/main.o: $(Test_src)/$(Test_Name)/main.cpp
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) $< -o $@
