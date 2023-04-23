@@ -9,12 +9,12 @@ void play(const std::vector<int>& settings)
     int decMatches = 0;
     while (isGame) {
         system("clear");
-        std::cout << "Ñïè÷åê îñòàëîñü: " << matchesRemaining << "\n";
+        std::cout << "Ð¡Ð¿Ð¸Ñ‡ÐµÐº Ð¾ÑÑ‚Ð°Ð»Ð¾ÑÑŒ: " << matchesRemaining << "\n";
         if (first.isMove)
-            std::cout << "Ñåé÷àñ õîäèò:" << first._name << " \n";
+            std::cout << "Ð¥Ð¾Ð´Ð¸Ñ‚ Ð¸Ð³Ñ€Ð¾Ðº:" << first._name << " \n";
         else
-            std::cout << "Ñåé÷àñ õîäèò:" << second._name << " \n";
-        std::cout << "Ââåäèòå æåëàåìîå êîë-âî ñïè÷åê [" << 1 << "-"
+            std::cout << "Ð¥Ð¾Ð´Ð¸Ñ‚ Ð¸Ð³Ñ€Ð¾Ðº:" << second._name << " \n";
+        std::cout << "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð¶ÐµÐ»Ð°ÐµÐ¼Ð¾Ðµ ÐºÐ¾Ð»-Ð²Ð¾ ÑÐ¿Ð¸Ñ‡ÐµÐº [" << 1 << "-"
                   << settings[1] << "]\n";
         do {
             std::cin >> decMatches;
@@ -30,16 +30,16 @@ void play(const std::vector<int>& settings)
                     }
                     break;
                 } else
-                    std::cout << "Ó âàñ íåò " << decMatches << " ñïè÷åê!\n";
+                    std::cout << "Ð£ Ð²Ð°Ñ Ð½ÐµÑ‚ " << decMatches << " ÑÐ¿Ð¸Ñ‡ÐµÐº!\n";
             } else
-                std::cout << "Íåâåðíûé ââîä!\n";
+                std::cout << "ÐÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ Ð²Ð²Ð¾Ð´\n";
         } while (true);
         if (matchesRemaining == 0) {
             system("clear");
             if (first.isMove)
-                std::cout << "Èãðîê " << second._name << " ïîáåäèë!";
+                std::cout << "Ð˜Ð³Ñ€Ð¾Ðº " << second._name << " Ð¿Ð¾Ð±ÐµÐ´Ð¸Ð»!";
             else
-                std::cout << "Èãðîê " << first._name << " ïîáåäèë!";
+                std::cout << "Ð˜Ð³Ñ€Ð¾Ðº " << first._name << " Ð¿Ð¾Ð±ÐµÐ´Ð¸Ð»!";
             isGame = false;
         }
     }
