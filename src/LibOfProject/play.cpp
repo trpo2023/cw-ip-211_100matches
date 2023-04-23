@@ -44,7 +44,7 @@ void play(const std::vector<int>& settings)
         }
     }
 }
-bool takeAway(int& matchesCount, int dec)
+bool takeAway(int matchesCount, int dec)
 {
     if (matchesCount >= dec)
         return true;

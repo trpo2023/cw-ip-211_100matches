@@ -39,32 +39,24 @@ $(OBJ_DIR)/%.o: %.cpp
 
 
 clean:
-	find $(BIN_DIR) -name '*' -exec $(RM) '{}' \;
+	$(RM) $(APP_PATH) $(LIB_PATH)
 	find $(OBJ_DIR) -name '*.o' -exec $(RM) '{}' \;
 	find $(OBJ_DIR) -name '*.d' -exec $(RM) '{}' \;
+	$(RM) $(test_exe)
+	
 
+Test_Name = test_project
+Test_Path = obj/test_src
+test_exe = bin/$(Test_Name)
+Test_src = test_src
+Test_lib = test_lib
+test:$(test_exe)
 
-TEST_NAME = test
-TESTLIB_NAME = test_lib
-
-TESTSRC_DIR = test_src
-
-TEST_PATH = $(BIN_DIR)/$(TEST_NAME)
-TESTLIB_PATH = $(OBJ_DIR)/$(TESTSRC_DIR)/$(TESTLIB_NAME)/$(TESTLIB_NAME).a
-
-TEST_SOURCES = $(shell find $(TESTSRC_DIR)/$(TEST_NAME) -name '*.$(SRC_EXT)')
-TEST_OBJECTS = $(TEST_SOURCES:$(TESTSRC_DIR)/%.$(SRC_EXT)=$(OBJ_DIR)/$(TESTSRC_DIR)/%.o)
-
-TESTLIB_SOURCES = $(shell find $(TESTSRC_DIR)/$(TESTLIB_NAME) -name '*.$(SRC_EXT)')
-TESTLIB_OBJECTS = $(TESTLIB_SOURCES:$(TESTSRC_DIR)/%.$(SRC_EXT)=$(OBJ_DIR)/$(TESTSRC_DIR)/%.o)
-
-test: $(TEST_PATH)
-
-$(TEST_PATH): $(TEST_OBJECTS) $(TESTLIB_PATH) $(LIB_PATH)
+$(test_exe):$(Test_Path)/$(Test_Name)/main.o $(Test_Path)/$(Test_lib)/test.o $(LIB_PATH)
 	$(CC) $(CFLAGS) $(CPPFLAGS) $^ -o $@
+	
+$(Test_Path)/$(Test_lib)/%.o: $(Test_Path)/$(Test_lib)/%.cpp
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) $< -o $@
 
-$(TESTLIB_PATH): $(TESTLIB_OBJECTS)
-	ar rcs $@ $^
-
-$(OBJ_DIR)/%.o: %.cpp
+$(Test_Path)/$(Test_Name)/main.o: $(Test_src)/$(Test_Name)/main.cpp
 	$(CC) -c $(CFLAGS) $(CPPFLAGS) $< -o $@
