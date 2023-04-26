@@ -1,4 +1,6 @@
-#include "play.h"
+#include <vector>
+#include <string>
+#include <iostream>
 
 void play(const std::vector<int>& settings)
 {

@@ -1,6 +1,7 @@
 #pragma once
-#include <iostream>
 #include <vector>
+#include <string>
+
 void play(const std::vector<int>& settings);
 bool takeAway(int matchesCount, int dec);
 bool TestDec(const std::vector<int>& settings, int dec);
