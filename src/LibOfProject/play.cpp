@@ -29,13 +29,8 @@ void play(const std::vector<int>& settings)
             if (TestDec(settings, decMatches)) {
                 if (takeAway(matchesRemaining, decMatches)) {
                     matchesRemaining -= decMatches;
-                    if (first.isMove) {
-                        first.isMove = false;
-                        second.isMove = true;
-                    } else {
-                        first.isMove = true;
-                        second.isMove = false;
-                    }
+                    first.isMove = ChangeOfCourse(first.isMove);
+                    second.isMove = ChangeOfCourse(second.isMove);
                     break;
                 } else
                     std::cout << "У вас нет " << decMatches << " спичек!\n";
@@ -78,4 +73,10 @@ int SelectQuantity(std ::string str)
     if (flag)
         return std ::stoi(str);
     return -1;
+}
+bool ChangeOfCourse(bool x)
+{
+    if (x)
+        return 0;
+    return 1;
 }
