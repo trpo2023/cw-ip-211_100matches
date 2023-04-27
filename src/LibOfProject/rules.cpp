@@ -1,6 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
-#include <unistd.h> 
+#include <unistd.h>
 
 void RulMsg()
 {
@@ -30,5 +30,5 @@ void Rules()
     system("clear");
     RulMsg();
     std ::cin >> str;
-    return ;
+    return;
 }

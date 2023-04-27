@@ -14,13 +14,18 @@ void play(const std::vector<int>& settings)
     std ::string str = "";
     while (isGame) {
         system("clear");
-        std::cout << "Спичек осталось: " << matchesRemaining << "\n";
+        std::cout
+                << "Спичек осталось: "
+                << matchesRemaining << "\n";
         if (first.isMove)
-            std::cout << "Ходит игрок:" << first._name << " \n";
+            std::cout << "Ходит игрок:"
+                      << first._name << " \n";
         else
-            std::cout << "Ходит игрок:" << second._name << " \n";
-        std::cout << "Выберите желаемое кол-во спичек [" << 1 << "-"
-                  << settings[1] << "]\n";
+            std::cout << "Ходит игрок:"
+                      << second._name << " \n";
+        std::cout << "Выберите желаемое кол-во "
+                     "спичек ["
+                  << 1 << "-" << settings[1] << "]\n";
         do {
             std::cin >> str;
             decMatches = SelectQuantity(str);
@@ -36,21 +41,27 @@ void play(const std::vector<int>& settings)
                     }
                     break;
                 } else
-                    std::cout << "У вас нет " << decMatches << " спичек!\n";
+                    std::cout << "У вас нет " << decMatches
+                              << " спичек!\n";
             } else
-                std::cout << "Неверный ввод\n";
+                std::cout << "Неверный "
+                             "ввод\n";
         } while (true);
         if (matchesRemaining == 0) {
             system("clear");
             if (first.isMove)
-                std::cout << "Игрок " << second._name << " победил!";
+                std::cout << "Игрок " << second._name
+                          << " победил!";
             else
-                std::cout << "Игрок " << first._name << " победил!";
+                std::cout << "Игрок " << first._name
+                          << " победил!";
             isGame = false;
         }
     }
     std::cout << "\n";
-    std ::cout << "Для того, чтобы выйти введите что-нибудь\n";
+    std ::cout
+            << "Для того, чтобы выйти введите "
+               "что-нибудь\n";
     std ::cin >> str;
 }
 bool takeAway(int matchesCount, int dec)
