@@ -1,4 +1,6 @@
-﻿#include <settings.h>
+﻿#include <iostream>
+#include <vector>
+
 using std::cout;
 using std::string;
 
