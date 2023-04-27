@@ -1,5 +1,5 @@
-#include <stdlib.h>
 #include <iostream>
+#include <stdlib.h>
 #include <string>
 
 #include <input.h>
@@ -9,10 +9,10 @@
 
 void ShowMenuMessage()
 {
-    std::cout << "Для того, чтобы играть, введите 1\n"
-                 "Для того, чтобы ознакомиться с правилами, введите 2\n"
-                 "Для того, чтобы настроить игру введите 3\n"
-                 "Для того, чтобы выключить приложение, введите 4\n";
+    std ::cout << "Для того, чтобы играть, введите 1\n"
+                  "Для того, чтобы ознакомиться с правилами, введите 2\n"
+                  "Для того, чтобы настроить игру введите 3\n"
+                  "Для того, чтобы выключить приложение, введите 4\n";
 }
 
 void TryAgainMsg()
@@ -20,24 +20,24 @@ void TryAgainMsg()
     std::cout << "Введено ошибочное значение, попробуйте снова\n";
 }
 
-unsigned char SelectMode(std ::string str)
+char SelectMode(std ::string str)
 {
-    if (CheckingTheInput(str, 1))
+    bool flag = CheckingTheInput(str, 1);
+    if (flag)
         return str[0];
     return '0';
 }
 
-
 int main()
 {
     std ::string str = "";
-    unsigned char menuflag = '0';
+    char menuflag = '0';
     std::vector<int> settingsVec = {100, 10};
     while (1) {
         system("clear");
         ShowMenuMessage();
         std ::cin >> str;
-        SelectMode(str);
+        menuflag = SelectMode(str);
         switch (menuflag) {
         case '1':
             play(settingsVec);

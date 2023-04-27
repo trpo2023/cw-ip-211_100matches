@@ -1,4 +1,4 @@
 #pragma once
-#include <string.h>
+#include <string>
 
-bool CheckingTheInput(std ::string str, int k);
+bool CheckingTheInput(std ::string str, unsigned int k);

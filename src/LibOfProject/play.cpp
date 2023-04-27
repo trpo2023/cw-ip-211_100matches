@@ -1,6 +1,8 @@
-#include <vector>
-#include <string>
 #include <iostream>
+#include <string>
+
+#include <input.h>
+#include <play.h>
 
 void play(const std::vector<int>& settings)
 {
@@ -9,6 +11,7 @@ void play(const std::vector<int>& settings)
     int matchesRemaining = settings[0];
     bool isGame = true;
     int decMatches = 0;
+    std ::string str = "";
     while (isGame) {
         system("clear");
         std::cout << "Спичек осталось: " << matchesRemaining << "\n";
@@ -19,7 +22,8 @@ void play(const std::vector<int>& settings)
         std::cout << "Выберите желаемое кол-во спичек [" << 1 << "-"
                   << settings[1] << "]\n";
         do {
-            std::cin >> decMatches;
+            std::cin >> str;
+            decMatches = SelectQuantity(str);
             if (TestDec(settings, decMatches)) {
                 if (takeAway(matchesRemaining, decMatches)) {
                     matchesRemaining -= decMatches;
@@ -45,6 +49,9 @@ void play(const std::vector<int>& settings)
             isGame = false;
         }
     }
+    std::cout << "\n";
+    std ::cout << "Для того, чтобы выйти введите что-нибудь\n";
+    std ::cin >> str;
 }
 bool takeAway(int matchesCount, int dec)
 {
@@ -59,4 +66,12 @@ bool TestDec(const std::vector<int>& settings, int dec)
         return true;
     else
         return false;
+}
+
+int SelectQuantity(std ::string str)
+{
+    bool flag = CheckingTheInput(str, 2);
+    if (flag)
+        return std ::stoi(str);
+    return -1;
 }

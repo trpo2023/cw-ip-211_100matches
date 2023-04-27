@@ -1,2 +1,3 @@
 #pragma once
-bool Rules();
+
+void Rules();
