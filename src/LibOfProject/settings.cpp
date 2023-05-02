@@ -98,22 +98,17 @@ void SecondSettingsMessage(unsigned int currentSettings) {
         "Введите число в допустимом диапазоне, либо введите число вне диапазона для выхода в меню...\n";
 }
 
-int CheckInput(std::string userInput) {// NEED UNIT TESTING
-
+int CheckInput(std::string userInput) 
+{
     std::transform(userInput.begin(), userInput.end(), userInput.begin(), tolower);
-
     if (userInput == "first")
         return 1;
-
     else if (userInput == "second")
         return 2;
-
     else if (userInput == "reset")
         return 3;
-
     else if (userInput == "exit")
         return 4;
-
     return 0;
 }
 
