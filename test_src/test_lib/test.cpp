@@ -180,3 +180,40 @@ CTEST(Input_user_settings_Suite,CheckResetFunction)
     ASSERT_EQUAL(expected_1,defaultSettings[0]);
     ASSERT_EQUAL(expected_2,defaultSettings[1]);
 }
+
+CTEST(Input_user_settings_Suite,CheckApplyFirstSettingMethod)
+{
+    // When
+    std::vector<int> defaultSettings = {150,15};
+    InputHandler myHandler;
+    const unsigned int userInput_1 = 100;// ok
+    const unsigned int userInput_2 = -300;// no ok
+
+    const bool result_1 = myHandler.ChangeFirstSettings(defaultSettings,userInput_1);
+    const bool result_2 = myHandler.ChangeFirstSettings(defaultSettings,userInput_2);
+
+    // Then
+    const bool expected_1 = true;
+    const bool expected_2 = false;
+
+    ASSERT_EQUAL(expected_1,result_1);
+    ASSERT_EQUAL(expected_2,result_2);
+}
+
+CTEST(Input_user_settings_Suite,CheckApplySecondSettingMethod)
+{
+    // When
+    std::vector<int> defaultSettings = {150,15};
+    InputHandler myHandler;
+    const unsigned int userInput_1 = 15;// ok
+    const unsigned int userInput_2 = -30;// no ok
+
+    const bool result_1 = myHandler.ChangeSecondSettings(defaultSettings,userInput_1);
+    const bool result_2 = myHandler.ChangeSecondSettings(defaultSettings,userInput_2);
+    // Then
+    const bool expected_1 = true;
+    const bool expected_2 = false;
+
+    ASSERT_EQUAL(expected_1,result_1);
+    ASSERT_EQUAL(expected_2,result_2);  
+}
