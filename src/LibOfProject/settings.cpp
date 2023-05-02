@@ -1,7 +1,7 @@
-﻿#include <iostream>
-#include <vector>
-#include <algorithm>
+﻿#include <algorithm>
+#include <iostream>
 #include <unistd.h>
+#include <vector>
 
 using std::cout;
 using std::string;
@@ -12,29 +12,32 @@ void SecondSettingsMessage(unsigned int currentSettings);
 int CheckInput(std::string userInput);
 void ResetSettings(std::vector<int>& defaultSettings);
 
-class InputHandler
-{
+class InputHandler {
 public:
-    bool ChangeFirstSettings(std::vector<int>& defaultSettings, unsigned int userInput);
-    bool ChangeSecondSettings(std::vector<int>& defaultSettings, unsigned int userInput);
+    bool ChangeFirstSettings(
+            std::vector<int>& defaultSettings, unsigned int userInput);
+    bool ChangeSecondSettings(
+            std::vector<int>& defaultSettings, unsigned int userInput);
 };
 
-bool InputHandler::ChangeFirstSettings(std::vector<int>& defaultSettings, unsigned int userInput)
+bool InputHandler::ChangeFirstSettings(
+        std::vector<int>& defaultSettings, unsigned int userInput)
 {
-    if (userInput <= 200 && userInput > 50) {// Ok
+    if (userInput <= 200 && userInput > 50) { // Ok
         defaultSettings[0] = userInput;
         return true;
     }
-    return false;// Wrong input
+    return false; // Wrong input
 }
 
-bool InputHandler::ChangeSecondSettings(std::vector<int>& defaultSettings, unsigned int userInput)
+bool InputHandler::ChangeSecondSettings(
+        std::vector<int>& defaultSettings, unsigned int userInput)
 {
-    if (userInput <= 20 && userInput > 5) {// Ok
+    if (userInput <= 20 && userInput > 5) { // Ok
         defaultSettings[1] = userInput;
         return true;
     }
-    return false;// Wrong input
+    return false; // Wrong input
 }
 
 void settings(std::vector<int>& defaultSettings)
@@ -42,65 +45,79 @@ void settings(std::vector<int>& defaultSettings)
     bool isSettings = true;
     string userInput = "";
     InputHandler userInputHandler;
-    while (isSettings)
-    {
+    while (isSettings) {
         system("clear");
 
-        cout << "Вы находитесь в разделе 'Настройки'\n" <<
-            "\nЧтобы изменить кол-во игровых спичек, введите команду 'first'" <<
-            "\nЧтобы изменить макс. допустимое кол-во спичек для взятия за ход введите команду 'second'" <<
-            "\nЧтобы вернуть настройки в исходное положение введите команду 'reset'" <<
-            "\nВыйти в меню - команда 'exit'\n";
+        cout << "Вы находитесь в разделе 'Настройки'\n"
+             << "\nЧтобы изменить кол-во игровых спичек, введите команду "
+                "'first'"
+             << "\nЧтобы изменить макс. допустимое кол-во спичек для взятия за "
+                "ход введите команду 'second'"
+             << "\nЧтобы вернуть настройки в исходное положение введите "
+                "команду 'reset'"
+             << "\nВыйти в меню - команда 'exit'\n";
 
         int userChangingSettings;
         std::cin >> userInput;
         int result = CheckInput(userInput);
 
-        switch (result)
-        {
-        case 1: FirstSettingsMessage(defaultSettings[0]);  std::cin >> userChangingSettings;
-            if (!userInputHandler.ChangeFirstSettings(defaultSettings, userChangingSettings)) {
+        switch (result) {
+        case 1:
+            FirstSettingsMessage(defaultSettings[0]);
+            std::cin >> userChangingSettings;
+            if (!userInputHandler.ChangeFirstSettings(
+                        defaultSettings, userChangingSettings)) {
                 std::cout << "Введен НЕВЕРНЫЙ диапазон!\n";
                 std::cin.clear();
                 sleep(1);
             }
             break;
-        case 2: SecondSettingsMessage(defaultSettings[1]); std::cin >> userChangingSettings;
-            if (!userInputHandler.ChangeSecondSettings(defaultSettings, userChangingSettings)) {
+        case 2:
+            SecondSettingsMessage(defaultSettings[1]);
+            std::cin >> userChangingSettings;
+            if (!userInputHandler.ChangeSecondSettings(
+                        defaultSettings, userChangingSettings)) {
                 std::cout << "Введен НЕВЕРНЫЙ диапазон!\n";
                 std::cin.clear();
                 sleep(1);
             }
             break;
-        case 3: ResetSettings(defaultSettings);
+        case 3:
+            ResetSettings(defaultSettings);
             std::cout << "Все настройки были возвращены\n";
             sleep(1);
             break;
 
-        case 4: return;// back to menu
+        case 4:
+            return; // back to menu
         default:
             break;
         }
     }
 }
 
-void FirstSettingsMessage(unsigned int currentSettings) {
-    system("clear");
-    std::cout << "Текущее значение параметра: " << currentSettings <<
-        "\nВы можете изменить его в пределах от [50-200],\n" <<
-        "Введите число в допустимом диапазоне, либо введите число вне диапазона для выхода в меню...\n";
-}
-
-void SecondSettingsMessage(unsigned int currentSettings) {
-    system("clear");
-    std::cout << "Текущее значение параметра " << currentSettings <<
-        "\nВы можете изменить его в пределах от [5-20],\n" <<
-        "Введите число в допустимом диапазоне, либо введите число вне диапазона для выхода в меню...\n";
-}
-
-int CheckInput(std::string userInput) 
+void FirstSettingsMessage(unsigned int currentSettings)
 {
-    std::transform(userInput.begin(), userInput.end(), userInput.begin(), tolower);
+    system("clear");
+    std::cout << "Текущее значение параметра: " << currentSettings
+              << "\nВы можете изменить его в пределах от [50-200],\n"
+              << "Введите число в допустимом диапазоне, либо введите число вне "
+                 "диапазона для выхода в меню...\n";
+}
+
+void SecondSettingsMessage(unsigned int currentSettings)
+{
+    system("clear");
+    std::cout << "Текущее значение параметра " << currentSettings
+              << "\nВы можете изменить его в пределах от [5-20],\n"
+              << "Введите число в допустимом диапазоне, либо введите число вне "
+                 "диапазона для выхода в меню...\n";
+}
+
+int CheckInput(std::string userInput)
+{
+    std::transform(
+            userInput.begin(), userInput.end(), userInput.begin(), tolower);
     if (userInput == "first")
         return 1;
     else if (userInput == "second")
@@ -112,7 +129,8 @@ int CheckInput(std::string userInput)
     return 0;
 }
 
-void ResetSettings(std::vector<int>& defaultSettings) {
+void ResetSettings(std::vector<int>& defaultSettings)
+{
     defaultSettings[0] = 100;
     defaultSettings[1] = 10;
 }
