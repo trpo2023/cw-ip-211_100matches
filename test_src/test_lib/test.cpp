@@ -148,37 +148,12 @@ CTEST(Input_Suite, Checking_The_Input_correct_input)
 CTEST(Input_user_settings_Suite, Checking_correct_checkingFunctionWork)
 {
     // When
-    const unsigned int result = CheckInput("first");
-    const unsigned int result_2 = CheckInput("second");
-    const unsigned int result_3 = CheckInput("reset");
-    const unsigned int result_4 = CheckInput("exit");
-    const unsigned int result_5 = CheckInput("gajgjaga");
-
-    const unsigned int result_6 = CheckInput("FIrsT");
-    const unsigned int result_7 = CheckInput("SecoND");
-    const unsigned int result_8 = CheckInput("RESet");
-    const unsigned int result_9 = CheckInput("EXIt");
+    std::vector<int> results = {CheckInput("first"),CheckInput("second"),CheckInput("reset"),CheckInput("exit"),
+    CheckInput("gajgjaga"),CheckInput("FIrsT"),CheckInput("SecoND"),CheckInput("RESet"),CheckInput("EXIt")};
     // Then
-    const unsigned int expected = 1;
-    const unsigned int expected_2 = 2;
-    const unsigned int expected_3 = 3;
-    const unsigned int expected_4 = 4;
-    const unsigned int expected_5 = 0;
-
-    const unsigned int expected_6 = 1;
-    const unsigned int expected_7 = 2;
-    const unsigned int expected_8 = 3;
-    const unsigned int expected_9 = 4;
-
-    ASSERT_EQUAL(expected,result);
-    ASSERT_EQUAL(expected_2,result_2);
-    ASSERT_EQUAL(expected_3,result_3);
-    ASSERT_EQUAL(expected_4,result_4);
-    ASSERT_EQUAL(expected_5,result_5);
-    ASSERT_EQUAL(expected_6,result_6);
-    ASSERT_EQUAL(expected_7,result_7);
-    ASSERT_EQUAL(expected_8,result_8);
-    ASSERT_EQUAL(expected_9,result_9);
+    std::vector<int> expected = {1,2,3,4,0,1,2,3,4};    
+    for(unsigned int i = 0; i < results.size();i++)
+        ASSERT_EQUAL(results[i],expected[i]);         
 }
 
 CTEST(Input_user_settings_Suite,CheckResetFunction)
@@ -186,7 +161,6 @@ CTEST(Input_user_settings_Suite,CheckResetFunction)
     // When
     std::vector<int> defaultSettings = {200,50}; 
     ResetSettings(defaultSettings);
-
     // Then
     const unsigned int expected_1 = 100;
     const unsigned int expected_2 = 10;
