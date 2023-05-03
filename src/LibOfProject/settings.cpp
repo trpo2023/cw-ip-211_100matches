@@ -3,15 +3,17 @@
 #include <unistd.h>
 #include <vector>
 
+using std::cin;
 using std::cout;
 using std::string;
 
 void FirstSettingsMessage(const unsigned int currentSettings);
 void SecondSettingsMessage(const unsigned int currentSettings);
 
-int CheckInput(std::string userInput);
+int CheckInput(string userInput);
 void ResetSettings(std::vector<int>& defaultSettings);
 void ShowMenu();
+void ShowCurrentSettingsOnScreen(std::vector<int>& defaultSettings);
 
 class InputHandler {
 public:
@@ -48,36 +50,37 @@ void settings(std::vector<int>& defaultSettings)
     InputHandler userInputHandler;
     while (isSettings) {
         ShowMenu();
+        ShowCurrentSettingsOnScreen(defaultSettings);
 
         int userChangingSettings;
-        std::cin >> userInput;
-        std::cin.ignore(256, '\n');
+        cin >> userInput;
+        cin.ignore(256, '\n');
         int result = CheckInput(userInput);
 
         switch (result) {
         case 1:
             FirstSettingsMessage(defaultSettings[0]);
-            std::cin >> userChangingSettings;
+            cin >> userChangingSettings;
             if (!userInputHandler.ChangeFirstSettings(
                         defaultSettings, userChangingSettings)) {
-                std::cout << "Введен НЕВЕРНЫЙ диапазон!\n";
-                std::cin.clear();
+                cout << "Введен НЕВЕРНЫЙ диапазон!\n";
+                cin.clear();
                 sleep(1);
             }
             break;
         case 2:
             SecondSettingsMessage(defaultSettings[1]);
-            std::cin >> userChangingSettings;
+            cin >> userChangingSettings;
             if (!userInputHandler.ChangeSecondSettings(
                         defaultSettings, userChangingSettings)) {
-                std::cout << "Введен НЕВЕРНЫЙ диапазон!\n";
-                std::cin.clear();
+                cout << "Введен НЕВЕРНЫЙ диапазон!\n";
+                cin.clear();
                 sleep(1);
             }
             break;
         case 3:
             ResetSettings(defaultSettings);
-            std::cout << "Все настройки были возвращены\n";
+            cout << "Все настройки были возвращены\n";
             sleep(1);
             break;
 
@@ -92,19 +95,19 @@ void settings(std::vector<int>& defaultSettings)
 void FirstSettingsMessage(const unsigned int currentSettings)
 {
     system("clear");
-    std::cout << "Текущее значение параметра: " << currentSettings
-              << "\nВы можете изменить его в пределах от [50-200],\n"
-              << "Введите число в допустимом диапазоне, либо введите число вне "
-                 "диапазона для выхода в меню...\n";
+    cout << "Текущее значение параметра: " << currentSettings
+         << "\nВы можете изменить его в пределах от [50-200],\n"
+         << "Введите число в допустимом диапазоне, либо введите число вне "
+            "диапазона для выхода в меню...\n";
 }
 
 void SecondSettingsMessage(const unsigned int currentSettings)
 {
     system("clear");
-    std::cout << "Текущее значение параметра " << currentSettings
-              << "\nВы можете изменить его в пределах от [5-20],\n"
-              << "Введите число в допустимом диапазоне, либо введите число вне "
-                 "диапазона для выхода в меню...\n";
+    cout << "Текущее значение параметра " << currentSettings
+         << "\nВы можете изменить его в пределах от [5-20],\n"
+         << "Введите число в допустимом диапазоне, либо введите число вне "
+            "диапазона для выхода в меню...\n";
 }
 
 int CheckInput(std::string userInput)
@@ -142,4 +145,12 @@ void ShowMenu()
          << "\nЧтобы вернуть настройки в исходное положение введите "
             "команду 'reset'"
          << "\nВыйти в меню - команда 'exit'\n";
+}
+
+void ShowCurrentSettingsOnScreen(std::vector<int>& defaultSettings)
+{
+    string s(30, '*');
+    cout << s << "\nТекущие настройки таковы:\nКол-во игровых спичек = "
+         << defaultSettings[0]
+         << "\nМакс. можно взять за ход = " << defaultSettings[1] << "\n";
 }
