@@ -6,22 +6,23 @@
 using std::cout;
 using std::string;
 
-void FirstSettingsMessage(unsigned int currentSettings);
-void SecondSettingsMessage(unsigned int currentSettings);
+void FirstSettingsMessage(const unsigned int currentSettings);
+void SecondSettingsMessage(const unsigned int currentSettings);
 
 int CheckInput(std::string userInput);
 void ResetSettings(std::vector<int>& defaultSettings);
+void ShowMenu();
 
 class InputHandler {
 public:
     bool ChangeFirstSettings(
-            std::vector<int>& defaultSettings, unsigned int userInput);
+            std::vector<int>& defaultSettings, const unsigned int userInput);
     bool ChangeSecondSettings(
-            std::vector<int>& defaultSettings, unsigned int userInput);
+            std::vector<int>& defaultSettings, const unsigned int userInput);
 };
 
 bool InputHandler::ChangeFirstSettings(
-        std::vector<int>& defaultSettings, unsigned int userInput)
+        std::vector<int>& defaultSettings, const unsigned int userInput)
 {
     if (userInput <= 200 && userInput > 50) { // Ok
         defaultSettings[0] = userInput;
@@ -31,7 +32,7 @@ bool InputHandler::ChangeFirstSettings(
 }
 
 bool InputHandler::ChangeSecondSettings(
-        std::vector<int>& defaultSettings, unsigned int userInput)
+        std::vector<int>& defaultSettings, const unsigned int userInput)
 {
     if (userInput <= 20 && userInput > 5) { // Ok
         defaultSettings[1] = userInput;
@@ -46,19 +47,11 @@ void settings(std::vector<int>& defaultSettings)
     string userInput = "";
     InputHandler userInputHandler;
     while (isSettings) {
-        system("clear");
-
-        cout << "Вы находитесь в разделе 'Настройки'\n"
-             << "\nЧтобы изменить кол-во игровых спичек, введите команду "
-                "'first'"
-             << "\nЧтобы изменить макс. допустимое кол-во спичек для взятия за "
-                "ход введите команду 'second'"
-             << "\nЧтобы вернуть настройки в исходное положение введите "
-                "команду 'reset'"
-             << "\nВыйти в меню - команда 'exit'\n";
+        ShowMenu();
 
         int userChangingSettings;
         std::cin >> userInput;
+        std::cin.ignore(256, '\n');
         int result = CheckInput(userInput);
 
         switch (result) {
@@ -96,7 +89,7 @@ void settings(std::vector<int>& defaultSettings)
     }
 }
 
-void FirstSettingsMessage(unsigned int currentSettings)
+void FirstSettingsMessage(const unsigned int currentSettings)
 {
     system("clear");
     std::cout << "Текущее значение параметра: " << currentSettings
@@ -105,7 +98,7 @@ void FirstSettingsMessage(unsigned int currentSettings)
                  "диапазона для выхода в меню...\n";
 }
 
-void SecondSettingsMessage(unsigned int currentSettings)
+void SecondSettingsMessage(const unsigned int currentSettings)
 {
     system("clear");
     std::cout << "Текущее значение параметра " << currentSettings
@@ -117,7 +110,9 @@ void SecondSettingsMessage(unsigned int currentSettings)
 int CheckInput(std::string userInput)
 {
     std::transform(
-            userInput.begin(), userInput.end(), userInput.begin(), tolower);
+            userInput.begin(), userInput.end(), userInput.begin(), [](char c) {
+                return tolower(c);
+            });
     if (userInput == "first")
         return 1;
     else if (userInput == "second")
@@ -133,4 +128,18 @@ void ResetSettings(std::vector<int>& defaultSettings)
 {
     defaultSettings[0] = 100;
     defaultSettings[1] = 10;
+}
+
+void ShowMenu()
+{
+    system("clear");
+
+    cout << "Вы находитесь в разделе 'Настройки'\n"
+         << "\nЧтобы изменить кол-во игровых спичек, введите команду "
+            "'first'"
+         << "\nЧтобы изменить макс. допустимое кол-во спичек для взятия за "
+            "ход введите команду 'second'"
+         << "\nЧтобы вернуть настройки в исходное положение введите "
+            "команду 'reset'"
+         << "\nВыйти в меню - команда 'exit'\n";
 }
