@@ -12,7 +12,7 @@ CTEST(GameLogicTest_Suite, unexceeding_the_limit)
     const int dec = 1;
     const int matchesCount = 100;
     // When
-    const bool result = takeAway(matchesCount, dec);
+    const bool result = TakeAway(matchesCount, dec);
 
     // Then
     const bool expected = 1;
@@ -24,7 +24,7 @@ CTEST(GameLogicTest_Suite,exceeding_the_limit)
     const int dec = 10;
     const int matchesCount = 1;
     // When
-    const bool result = takeAway(matchesCount, dec);
+    const bool result = TakeAway(matchesCount, dec);
 
     // Then
     const bool expected = 0;

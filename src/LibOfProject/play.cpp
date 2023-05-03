@@ -5,7 +5,7 @@
 #include <input.h>
 #include <play.h>
 
-void play(const std::vector<int>& settings)
+void Play(const std::vector<int>& settings)
 {
     Player first(true, "Player one");
     Player second(false, "Player two");
@@ -24,10 +24,10 @@ void play(const std::vector<int>& settings)
                      "спичек ["
                   << 1 << "-" << settings[1] << "]\n";
         do {
-            std::cin >> str;
+            std::getline(std::cin, str);
             decMatches = SelectQuantity(str);
             if (TestDec(settings, decMatches)) {
-                if (takeAway(matchesRemaining, decMatches)) {
+                if (TakeAway(matchesRemaining, decMatches)) {
                     matchesRemaining -= decMatches;
                     first.isMove = ChangeOfCourse(first.isMove);
                     second.isMove = ChangeOfCourse(second.isMove);
@@ -50,9 +50,9 @@ void play(const std::vector<int>& settings)
     std::cout << "\n";
     std ::cout << "Для того, чтобы выйти введите "
                   "что-нибудь\n";
-    std ::cin >> str;
+    std::getline(std::cin, str);
 }
-bool takeAway(int matchesCount, int dec)
+bool TakeAway(int matchesCount, int dec)
 {
     if (matchesCount >= dec)
         return true;

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <string>
+#include <unistd.h>
 
 #include <input.h>
 #include <play.h>
@@ -20,7 +21,7 @@ void TryAgainMsg()
     std::cout << "Введено ошибочное значение, попробуйте снова\n";
 }
 
-char SelectMode(std ::string str)
+char SelectMode(std ::string& str)
 {
     bool flag = CheckingTheInput(str, 1);
     if (flag)
@@ -36,11 +37,12 @@ int main()
     while (1) {
         system("clear");
         ShowMenuMessage();
-        std ::cin >> str;
+        std::getline(std::cin, str);
         menuflag = SelectMode(str);
         switch (menuflag) {
         case '1':
-            play(settingsVec);
+            Play(settingsVec);
+            str = "";
             break;
         case '2':
             Rules();
