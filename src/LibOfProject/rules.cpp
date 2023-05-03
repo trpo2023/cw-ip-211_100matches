@@ -29,6 +29,6 @@ void Rules()
     std ::string str = "";
     system("clear");
     RulMsg();
-    std ::cin >> str;
+    std::getline(std::cin, str);
     return;
 }

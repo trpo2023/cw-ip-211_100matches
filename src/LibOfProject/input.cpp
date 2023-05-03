@@ -5,11 +5,11 @@ bool CheckingTheInput(
         std ::string str,
         unsigned int k) //строка и количество символов которые нужно учитывать
 {
-    std ::string cheak = "1234567890";
+    std ::string check = "1234567890";
     unsigned int len = str.length();
     if (len <= k) {
         for (unsigned int i = 0; i < len; i++)
-            if (cheak.find(str[i]) == std::string::npos)
+            if (check.find(str[i]) == std::string::npos)
                 return 0;
         return 1;
     } else
