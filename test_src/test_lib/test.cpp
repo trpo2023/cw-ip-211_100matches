@@ -153,6 +153,11 @@ CTEST(Input_user_settings_Suite, Checking_correct_checkingFunctionWork)
     const unsigned int result_3 = CheckInput("reset");
     const unsigned int result_4 = CheckInput("exit");
     const unsigned int result_5 = CheckInput("gajgjaga");
+
+    const unsigned int result_6 = CheckInput("FIrsT");
+    const unsigned int result_7 = CheckInput("SecoND");
+    const unsigned int result_8 = CheckInput("RESet");
+    const unsigned int result_9 = CheckInput("EXIt");
     // Then
     const unsigned int expected = 1;
     const unsigned int expected_2 = 2;
@@ -160,11 +165,20 @@ CTEST(Input_user_settings_Suite, Checking_correct_checkingFunctionWork)
     const unsigned int expected_4 = 4;
     const unsigned int expected_5 = 0;
 
+    const unsigned int expected_6 = 1;
+    const unsigned int expected_7 = 2;
+    const unsigned int expected_8 = 3;
+    const unsigned int expected_9 = 4;
+
     ASSERT_EQUAL(expected,result);
     ASSERT_EQUAL(expected_2,result_2);
     ASSERT_EQUAL(expected_3,result_3);
     ASSERT_EQUAL(expected_4,result_4);
     ASSERT_EQUAL(expected_5,result_5);
+    ASSERT_EQUAL(expected_6,result_6);
+    ASSERT_EQUAL(expected_7,result_7);
+    ASSERT_EQUAL(expected_8,result_8);
+    ASSERT_EQUAL(expected_9,result_9);
 }
 
 CTEST(Input_user_settings_Suite,CheckResetFunction)
